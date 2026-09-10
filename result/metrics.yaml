@@ -137,8 +137,6 @@ components:
       description: >-
         Response containing chosen traffic generator metrics.
       type: object
-      required:
-        - pagination
       properties:
         pagination:
           $ref: '#/components/schemas/Metrics.PaginationResponse'

@@ -10365,7 +10365,7 @@ message Rocev2ConnectionType {
     }
   }
   // Description missing in models
-  // required = true
+  // default = Choice.Enum.reliable_connection
   optional Choice.Enum choice = 1;
 
   // Description missing in models
@@ -15366,9 +15366,6 @@ message CollectiveCommunicationsAlgorithm {
 
   // Selects a system-provided or custom collective algorithm.
   CollectiveCommunicationsAlgorithmType algorithm_type = 1;
-
-  // Configuration for the flow control mechanism used by this algorithm.
-  CollectiveCommunicationsFlowControl flow_control_config = 2;
 }
 
 // Selects either a system-provided collective algorithm or a custom user-provided implementation.
@@ -15417,33 +15414,6 @@ message CollectiveCommunicationsAlgorithmType {
 
   // A path of format package.module.classname to a class that inherits from keys_ai_ml_chakra.Expander.
   optional string custom = 3;
-}
-
-// Flow control mechanism configuration. Receiver grants credits to sender to control
-// data flow.
-message CollectiveCommunicationsFlowControl {
-
-  // Enable flow control. Default false.
-  // default = False
-  optional bool enable_flow_control = 1;
-
-  // Maximum number of credits allowed in flight.
-  // default = 4
-  optional uint32 max_inflight_credits = 2;
-
-  message CreditDistribution {
-    enum Enum {
-      unspecified = 0;
-      all_streams = 1;
-      single_stream = 2;
-    }
-  }
-  // Determines how credits are distributed across streams. Default is all_streams.
-  // default = CreditDistribution.Enum.all_streams
-  optional CreditDistribution.Enum credit_distribution = 3;
-
-  // Selects whether the compute delay is manually configured or automatically derived.
-  CollectiveCommunicationsComputeDelay compute_delay = 4;
 }
 
 // Selects whether the compute delay used by flow control is manually configured or
@@ -16114,7 +16084,7 @@ message Rocev2CNP {
     }
   }
   // Description missing in models
-  // required = true
+  // default = Choice.Enum.ip_dscp
   optional Choice.Enum choice = 1;
 
   // IP DSCP value for the CNP packets.
@@ -16150,7 +16120,7 @@ message Rocev2QPConnectionType {
     }
   }
   // Description missing in models
-  // required = true
+  // default = Choice.Enum.reliable_connection
   optional Choice.Enum choice = 1;
 
   // Description missing in models
@@ -16200,7 +16170,7 @@ message Rocev2ACK {
     }
   }
   // Description missing in models
-  // required = true
+  // default = Choice.Enum.ip_dscp
   optional Choice.Enum choice = 1;
 
   // IP DSCP value for the ACK packets.
@@ -16230,7 +16200,7 @@ message Rocev2NAK {
     }
   }
   // Description missing in models
-  // required = true
+  // default = Choice.Enum.ip_dscp
   optional Choice.Enum choice = 1;
 
   // IP DSCP value for the NAK packets.
@@ -18186,7 +18156,6 @@ message MetricsRequest {
 message MetricsResponse {
 
   // Description missing in models
-  // required = true
   MetricsPaginationResponse pagination = 26;
 
   message Choice {

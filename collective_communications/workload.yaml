@@ -292,11 +292,6 @@ components:
           description: >-
             Selects a system-provided or custom collective algorithm.
           x-field-uid: 1
-        flow_control_config:
-          $ref: '#/components/schemas/CollectiveCommunications.FlowControl'
-          description: >-
-            Configuration for the flow control mechanism used by this algorithm.
-          x-field-uid: 2
 
     CollectiveCommunications.Algorithm.Type:
       description: >-
@@ -333,48 +328,6 @@ components:
             A path of format package.module.classname to a class that inherits from
             keys_ai_ml_chakra.Expander.
           x-field-uid: 3
-
-    CollectiveCommunications.FlowControl:
-      description: >-
-        Flow control mechanism configuration. Receiver grants credits to sender to control data flow.
-      type: object
-      properties:
-        enable_flow_control:
-          type: boolean
-          default: false
-          description: >-
-            Enable flow control. Default false.
-          x-field-uid: 1
-        max_inflight_credits:
-          type: integer
-          format: uint32
-          default: 4
-          minimum: 1
-          maximum: 8
-          description: >-
-            Maximum number of credits allowed in flight.
-          x-field-uid: 2
-        credit_distribution:
-          type: string
-          default: all_streams
-          description: >-
-            Determines how credits are distributed across streams. Default is all_streams.
-          x-field-uid: 3
-          x-enum:
-            all_streams:
-              description: >-
-                One credit unblocks all streams simultaneously.
-              x-field-uid: 1
-            single_stream:
-              description: >-
-                One credit unblocks one stream at a time.
-              x-field-uid: 2
-        compute_delay:
-          $ref: '#/components/schemas/CollectiveCommunications.ComputeDelay'
-          description: >-
-            Selects whether the compute delay is manually configured or
-            automatically derived.
-          x-field-uid: 4
 
     CollectiveCommunications.ComputeDelay:
       description: >-
